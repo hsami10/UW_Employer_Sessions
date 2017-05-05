@@ -22,7 +22,6 @@ const extractData = (session, response) => {
         logoQuery = 'ea';
     //construct url to call for company logo
     logoQuery = `http://logo.clearbit.com/${logoQuery}.com?size=400`
-    console.log(logoQuery);
 
     //construct a string with <li> tags, each for a target audience
     let audience = ``;
@@ -32,7 +31,7 @@ const extractData = (session, response) => {
     //assemble all the values that need to be injected into the html templates in a values object.
     const values = {
         logoQuery: logoQuery,
-        googleLocation: "https://screenshots.en.sftcdn.net/en/scrn/97000/97769/google-maps-53-535x535.png",
+        googleLocation: `https://screenshots.en.sftcdn.net/en/scrn/97000/97769/google-maps-53-535x535.png`,
         employerName: session.employer,
         day: session.day,
         date: session.date,
@@ -53,6 +52,7 @@ const home = (request, response) => {
         response.writeHead(200, { 'Content-Type': 'text/html' });
         //show page title
         renderer.display("header", {}, response);
+        response.write('<div class="row">');
 
         //get JSON from uw api. Instantiate the client first
         const uwClient = new uwaterlooApi({
@@ -63,17 +63,23 @@ const home = (request, response) => {
         uwClient.get('/resources/infosessions', (err, res) => {
             if (res.meta.status === 200) {
                 const data = res.data;
-                //console.log(data.length);
+                
+                let rowCounter = 1;
                 data.forEach((session, index) => {
                     //if its a closed information session, skip over this one
                     const checkClosed = session.employer.toLowerCase();
                     if (checkClosed.includes("closed info session") || checkClosed.includes("closed information session")) {
                         return;
                     }
+
                     //call extractData session to get relevent data from json and call renderer on it.
                     extractData(session, response);
+                    if (rowCounter % 3 === 0) {
+                        response.write('</div><div class="row">');
+                    }
+                    ++rowCounter;
                 });
-
+                response.write('</div>');
                 renderer.display("footer", {}, response);
                 response.end();
             }
