@@ -20,7 +20,8 @@ const home = (request, response) => {
         uwClient.get('/resources/infosessions', (err, res) => {
             if (res.meta.status === 200) {
                 const data = res.data;
-                data.forEach( (val, index) => {
+                //console.log(data.length);
+                data.forEach((val, index) => {
                     const logoQuery = val.employer.replace(' ', '').toLowerCase();
                     const values = {
                         logoQuery: logoQuery,
@@ -28,11 +29,13 @@ const home = (request, response) => {
                     };
                     renderer.display("info_session", values, response);
                 });
+
+                renderer.display("footer", {}, response);
+                response.end();
             }
+
         });
 
-        renderer.display("footer", {}, response);
-        response.end();
         //on end, 
         //show all the cards containing employer info sessions
         //on error,
