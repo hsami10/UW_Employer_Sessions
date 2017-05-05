@@ -4,6 +4,7 @@
 
 const fs = require('fs');
 
+//helper to insert proper values into template
 const insertValues = (fileContents, values) => {
     //loop through values properties and populate fileContents with the values in it.
     for (const key in values) {
@@ -12,6 +13,7 @@ const insertValues = (fileContents, values) => {
     return fileContents;
 };
 
+//main function to read and serve files 
 const display = (templateName, values, response) => {
     //read from the template file
     let fileContents = fs.readFileSync(`../html_templates/${templateName}.html`, {encoding: "utf8"});

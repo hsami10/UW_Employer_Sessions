@@ -22,6 +22,7 @@ const extractData = (session, response) => {
         logoQuery = 'ea';
     //construct url to call for company logo
     logoQuery = `http://logo.clearbit.com/${logoQuery}.com?size=400`
+    console.log(logoQuery);
 
     //construct a string with <li> tags, each for a target audience
     let audience = ``;
