@@ -11,15 +11,21 @@ const companies = ['digiflare', 'adroll', 'cibc', 'loblaw', 'groupbyinc', 'bloom
 const extractData = (session, response) => {
     //construct the query string for the clearbit search for company logo
     let logoQuery = session.employer.replace(' ', '').toLowerCase();
-    
+
     //go through 'companies' and check if logoQuery actually refers to one of them. Then adjust logoquery.
-    companies.forEach( (company) => {
-        if (logoQuery.includes(company)) {
+    companies.forEach((company) => {
+        if (logoQuery.includes(company))
             logoQuery = company;
-        }
     });
     //individual EA (Electronic Arts) case
-    if (logoQuery.includes('electronicarts')) logoQuery = 'ea';
+    if (logoQuery.includes('electronicarts'))
+        logoQuery = 'ea';
+
+    //refer to different link if company is Adroll; using clearbit makes a display:none appear idk why.
+    if (logoQuery.includes('adroll'))
+        logoQuery = `https://assets1.adroll.com/namaste/1489523044/static/i/adroll.curl.svg`
+    else //otherwise just construct a clearbit url to fetch the company logo
+        logoQuery = `http://logo.clearbit.com/${logoQuery}.com?size=400`
 
     //construct a string with <li> tags, each for a target audience
     let audience = ``;
@@ -28,7 +34,7 @@ const extractData = (session, response) => {
     });
     //assemble all the values that need to be injected into the html templates in a values object.
     const values = {
-        logoQuery: logoQuery,
+        logoQuery: `http://logo.clearbit.com/${logoQuery}.com?size=400`,
         googleLocation: "https://screenshots.en.sftcdn.net/en/scrn/97000/97769/google-maps-53-535x535.png",
         employerName: session.employer,
         day: session.day,
