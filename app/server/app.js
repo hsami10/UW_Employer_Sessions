@@ -8,8 +8,8 @@
 //PERFECTIONS: 
   //MAKE CARD BE A CERTAIN SIZE, AND WHEN CLICKED ON THE SEE MORE BUTTON, YOU BRING IT INTO FOCUS AND EXPAND TO SHOW MORE INFO.
 
+const http = require('http');
 const router = require('./router.js');
-const renderer = require('./renderer.js');
 
 const port = 8080;
 const server = http.createServer( (request, response) => {
