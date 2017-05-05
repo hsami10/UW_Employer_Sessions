@@ -5,13 +5,13 @@ const uwApi = require('./uw_api.json');
 const renderer = require('./renderer.js');
 
 //array to hold query strings for common company's, in order to properly get the logo using Clearbit
-const companies = ['digiflare', 'adroll', 'cibc', 'loblaw', 'groupbyinc', 'bloomberg', 'td', 'ea', 'rbc', 'waveaccounting'];
+const companies = ['digiflare', 'adroll', 'cibc', 'loblaw', 'groupbyinc', 'bloomberg', 'td', 'rbc', 'waveaccounting'];
 
 //helper function to extract data from json and embed them into an object, then render them with renderer
 const extractData = (session, response) => {
     //construct the query string for the clearbit search for company logo
-    const logoQuery = session.employer.replace(' ', '').toLowerCase();
-
+    let logoQuery = session.employer.replace(' ', '').toLowerCase();
+    console.log(logoQuery);
     companies.forEach( (company) => {
         if (logoQuery.includes(company)) {
             logoQuery = company;
