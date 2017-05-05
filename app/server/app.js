@@ -19,9 +19,9 @@ const server = http.createServer( (request, response) => {
   //2. Handle HTTP GET request to home page
   //if url == / and GET
   if (request.url === '/') {
-    //show page title
     response.writeHead(200, {'Content-Type': 'text/html'});
-    renderer.view("header", {}, response); //
+    //show page title
+    renderer.display("header", {}, response); 
     //get JSON from uw api
       //on end, 
         //show all the cards containing employer info sessions
