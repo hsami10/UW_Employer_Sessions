@@ -12,20 +12,22 @@
 const http = require('http');
 const uwaterlooApi = require('uwaterloo-api'); 
 const uwApi = require('./uw_api.json');
+const renderer = require('./renderer.js');
 
 const port = 8080;
 const server = http.createServer( (request, response) => {
   //2. Handle HTTP GET request to home page
   //if url == / and GET
   if (request.url === '/') {
-    console.log('Hey it works');
-  }
     //show page title
+    response.writeHead(200, {'Content-Type': 'text/html'});
+    renderer.view("header", {}, response); //
     //get JSON from uw api
       //on end, 
         //show all the cards containing employer info sessions
       //on error,
         //show error
+  } 
 
   response.end();
 }).listen(port, () => {
