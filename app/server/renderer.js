@@ -1,6 +1,6 @@
 //Program that handles the reading of files and merge in value
   //create html templates
-  //use node fs to read from those files and serve them.
+  //use node file system module to read from those files and serve them.
 
 const fs = require('fs');
 

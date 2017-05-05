@@ -4,16 +4,26 @@ const uwaterlooApi = require('uwaterloo-api');
 const uwApi = require('./uw_api.json');
 const renderer = require('./renderer.js');
 
+//array to hold query strings for common company's, in order to properly get the logo using Clearbit
+const companies = ['digiflare', 'adroll', 'cibc', 'loblaw', 'groupbyinc', 'bloomberg', 'td', 'ea', 'rbc', 'waveaccounting'];
+
 //helper function to extract data from json and embed them into an object, then render them with renderer
-const extractData = (session) => {
+const extractData = (session, response) => {
     //construct the query string for the clearbit search for company logo
     const logoQuery = session.employer.replace(' ', '').toLowerCase();
+
+    companies.forEach( (company) => {
+        if (logoQuery.includes(company)) {
+            logoQuery = company;
+        }
+    });
+
     //construct a string with <li> tags, each for a target audience
     let audience = ``;
     session.audience.forEach((val) => {
         audience += `<li>${val}</li>`;
     });
-
+    //assemble all the values that need to be injected into the html templates in a values object.
     const values = {
         logoQuery: logoQuery,
         googleLocation: "https://screenshots.en.sftcdn.net/en/scrn/97000/97769/google-maps-53-535x535.png",
@@ -30,6 +40,7 @@ const extractData = (session) => {
     renderer.display("info_session", values, response);
 }
 
+//function to connect with uw api and retrieve data regarding info sessions
 const home = (request, response) => {
     //Handle HTTP GET request to home page
     if (request.url === '/') {
@@ -54,7 +65,7 @@ const home = (request, response) => {
                         return;
                     }
                     //call extractData session to get relevent data from json and call renderer on it.
-                    extractData(session);
+                    extractData(session, response);
                 });
 
                 renderer.display("footer", {}, response);
