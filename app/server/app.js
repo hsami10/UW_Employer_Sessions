@@ -10,6 +10,7 @@
 
 
 const http = require('http');
+const https = require('https');
 const uwaterlooApi = require('uwaterloo-api'); 
 const uwApi = require('./uw_api.json');
 const renderer = require('./renderer.js');
@@ -22,7 +23,16 @@ const server = http.createServer( (request, response) => {
     response.writeHead(200, {'Content-Type': 'text/html'});
     //show page title
     renderer.display("header", {}, response); 
-    //get JSON from uw api
+    //get JSON from uw api. Instantiate the client first
+    const uwClient = new uwaterlooApi({
+      API_KEY : uwApi.key
+    });
+    
+    //make uw api call to resources/infosessions
+    uwClient.get('/feds/events', function(err, res) {
+      console.log(typeof res); 
+    }); 
+
       //on end, 
         //show all the cards containing employer info sessions
       //on error,
@@ -46,16 +56,5 @@ const server = http.createServer( (request, response) => {
 //Require the module 
 
 
-//Instantiate the client 
-// const uwClient = new uwaterlooApi({
-//   API_KEY : uwApi.key
-// });
 
-//Use the API 
-// uwClient.get('/feds/events', function(err, res) {
-//   console.log(typeof res); 
-// }); 
 
-// uwClient.get('/events/holidays', function(err, res) {
-//   console.log(res); 
-// });
