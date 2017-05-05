@@ -11,12 +11,15 @@ const companies = ['digiflare', 'adroll', 'cibc', 'loblaw', 'groupbyinc', 'bloom
 const extractData = (session, response) => {
     //construct the query string for the clearbit search for company logo
     let logoQuery = session.employer.replace(' ', '').toLowerCase();
-    console.log(logoQuery);
+    
+    //go through 'companies' and check if logoQuery actually refers to one of them. Then adjust logoquery.
     companies.forEach( (company) => {
         if (logoQuery.includes(company)) {
             logoQuery = company;
         }
     });
+    //individual EA (Electronic Arts) case
+    if (logoQuery.includes('electronicarts')) logoQuery = 'ea';
 
     //construct a string with <li> tags, each for a target audience
     let audience = ``;
