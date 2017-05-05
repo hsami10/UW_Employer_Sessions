@@ -22,6 +22,11 @@ const home = (request, response) => {
                 const data = res.data;
                 //console.log(data.length);
                 data.forEach((session, index) => {
+                    //if its a closed information session, skip over this one
+                    const checkClosed = session.employer.toLowerCase();
+                    if (checkClosed.includes("Closed Info Session") || checkClosed.includes("Closed Information Session")) {
+                        return;
+                    }
                     //construct the query string for the clearbit search for company logo
                     const logoQuery = session.employer.replace(' ', '').toLowerCase();
                     //construct a string with <li> tags, each for a target audience
