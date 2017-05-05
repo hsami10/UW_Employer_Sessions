@@ -20,12 +20,8 @@ const extractData = (session, response) => {
     //individual EA (Electronic Arts) case
     if (logoQuery.includes('electronicarts'))
         logoQuery = 'ea';
-
-    //refer to different link if company is Adroll; using clearbit makes a display:none appear idk why.
-    if (logoQuery.includes('adroll'))
-        logoQuery = `https://assets1.adroll.com/namaste/1489523044/static/i/adroll.curl.svg`
-    else //otherwise just construct a clearbit url to fetch the company logo
-        logoQuery = `http://logo.clearbit.com/${logoQuery}.com?size=400`
+    //construct url to call for company logo
+    logoQuery = `http://logo.clearbit.com/${logoQuery}.com?size=400`
 
     //construct a string with <li> tags, each for a target audience
     let audience = ``;
@@ -34,7 +30,7 @@ const extractData = (session, response) => {
     });
     //assemble all the values that need to be injected into the html templates in a values object.
     const values = {
-        logoQuery: `http://logo.clearbit.com/${logoQuery}.com?size=400`,
+        logoQuery: logoQuery,
         googleLocation: "https://screenshots.en.sftcdn.net/en/scrn/97000/97769/google-maps-53-535x535.png",
         employerName: session.employer,
         day: session.day,
