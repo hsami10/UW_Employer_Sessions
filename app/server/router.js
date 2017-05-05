@@ -53,6 +53,8 @@ const home = (request, response) => {
                     if (checkClosed.includes("closed info session") || checkClosed.includes("closed information session")) {
                         return;
                     }
+                    //call extractData session to get relevent data from json and call renderer on it.
+                    extractData(session);
                 });
 
                 renderer.display("footer", {}, response);
