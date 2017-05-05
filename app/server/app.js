@@ -9,10 +9,7 @@
   //MAKE CARD BE A CERTAIN SIZE, AND WHEN CLICKED ON THE SEE MORE BUTTON, YOU BRING IT INTO FOCUS AND EXPAND TO SHOW MORE INFO.
 
 
-const http = require('http');
-const https = require('https');
-const uwaterlooApi = require('uwaterloo-api'); 
-const uwApi = require('./uw_api.json');
+const router = require('./router.js');
 const renderer = require('./renderer.js');
 
 const port = 8080;
@@ -23,6 +20,7 @@ const server = http.createServer( (request, response) => {
     response.writeHead(200, {'Content-Type': 'text/html'});
     //show page title
     renderer.display("header", {}, response); 
+
     //get JSON from uw api. Instantiate the client first
     const uwClient = new uwaterlooApi({
       API_KEY : uwApi.key
