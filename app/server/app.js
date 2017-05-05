@@ -9,17 +9,30 @@
   //MAKE CARD BE A CERTAIN SIZE, AND WHEN CLICKED ON THE SEE MORE BUTTON, YOU BRING IT INTO FOCUS AND EXPAND TO SHOW MORE INFO.
 
 
-//PLAN:
-//1. Create a web server
+const http = require('http');
+const uwaterlooApi = require('uwaterloo-api'); 
+const uwApi = require('./uw_api.json');
 
-//2. Handle HTTP GET request to home page
+const port = 8080;
+const server = http.createServer( (request, response) => {
+  //2. Handle HTTP GET request to home page
   //if url == / and GET
+  if (request.url === '/') {
+    console.log('Hey it works');
+  }
     //show page title
     //get JSON from uw api
       //on end, 
         //show all the cards containing employer info sessions
       //on error,
         //show error
+
+  response.end();
+}).listen(port, () => {
+  console.log(`Server running at http://localhost:${port} ...`);
+})
+//1. Create a web server
+
 
 //3. Function that handles the reading of files and merge in value
   //create html templates
@@ -28,15 +41,12 @@
 
 
 
-
-
-
 //Require the module 
-// const uwaterlooApi = require('uwaterloo-api'); 
+
 
 //Instantiate the client 
 // const uwClient = new uwaterlooApi({
-//   API_KEY : '9b4c11e14e0cc5448d4a502130e365d6'
+//   API_KEY : uwApi.key
 // });
 
 //Use the API 
