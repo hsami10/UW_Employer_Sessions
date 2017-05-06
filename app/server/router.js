@@ -95,10 +95,12 @@ const home = (request, response) => {
                     ++rowCounter; //use rowCounter to keep track of how many info sessions have been displayed.
                 });
                 response.write('</div>');
+                
                 const footerValues = { 
                     googleMapsKey: apis.googleMapsKey,
                  };
                 renderer.display("footer", footerValues, response);
+
                 response.end();
             }
 

@@ -1,11 +1,16 @@
     </div> <!-- 'row' end -->
     
     <script>
-        let map;
         const initMap = () => {
-            map = new google.maps.Map(document.getElementById('blah'), {
-                center: {lat: -34.397, lng: 150.644},
-                zoom: 8
+            const location = {lat: -34.397/**{{mapLat}}*/, lng: 150.644/*{{mapLong}}*/};
+            const map = new google.maps.Map(document.getElementById('map1'), {
+                center: location,
+                zoom: 8//{{mapZoom}}
+            });
+            const marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                //title: 
             });
         };
     </script>
