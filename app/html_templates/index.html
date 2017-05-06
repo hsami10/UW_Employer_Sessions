@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <title>Employer_Info_Sessions</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <style>
+        {{cssStyling}}
+    </style>
 </head>
 
 <body>
@@ -14,39 +16,26 @@
         <!-- 'row' start -->
         <div class="col-sm-4">
             <div class="row">
-                <a><img class="col-sm-6" src="http://logo.clearbit.com/spotify.com?size=300" /></a>
-                <a><img class="col-sm-6" src="https://screenshots.en.sftcdn.net/en/scrn/97000/97769/google-maps-53-535x535.png"
-                    /></a>
+                <a {{companyLogoPage}} target="_blank"><img class="col-sm-6" src="{{logoQuery}}" style="display: inline !important;" /></a>
+                <a><img class="col-sm-6" src="{{googleLocation}}" /></a>
             </div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-        </div>
-        <div class="col-sm-4">
-            <div class="row">
-                <a><img class="col-sm-6" src="http://logo.clearbit.com/spotify.com?size=300" /></a>
-                <a><img class="col-sm-6" src="https://screenshots.en.sftcdn.net/en/scrn/97000/97769/google-maps-53-535x535.png"
-                    /></a>
+            <div>
+                <h2>{{employerName}}</h2>
+                <h3>{{day}}, {{date}} | {{startTime}} - {{endTime}}</h3>
+                <a href="{{buildingUrl}}" target="_blank">
+                    <h4>{{buildingNRoom}}</h4>
+                </a>
+                <h4>Audience</h4>
+                <ul>
+                    {{audienceList}}
+                </ul>
+                <p>{{description}}</p>
             </div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
         </div>
-        <div class="col-sm-4">
-            <div class="row">
-                <a><img class="col-sm-6" src="http://logo.clearbit.com/spotify.com?size=300" /></a>
-                <a><img class="col-sm-6" src="https://screenshots.en.sftcdn.net/en/scrn/97000/97769/google-maps-53-535x535.png"
-                    /></a>
-            </div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-        </div>
-    </div>
-    <!-- 'row' end -->
+    </div> <!-- 'row' end -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWx2ufvH-AJmD0zPoccbMF-MxesvG3fE4&callback=initMap">
+    </script>
 </body>
 
 </html>
