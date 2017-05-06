@@ -17,20 +17,28 @@ const extractData = (session, response) => {
         if (logoQuery.includes(company))
             logoQuery = company;
     });
-    //individual EA (Electronic Arts) case
-    if (logoQuery.includes('electronicarts'))
+    
+    if (logoQuery.includes('electronicarts')) //individual EA (Electronic Arts) case
         logoQuery = 'ea';
-    //construct url to call for company logo
-    logoQuery = `http://logo.clearbit.com/${logoQuery}.com?size=400`
+    logoQuery = `http://logo.clearbit.com/${logoQuery}.com?size=400`; //construct url to call for company logo
 
     //construct a string with <li> tags, each for a target audience
     let audience = ``;
     session.audience.forEach((val) => {
         audience += `<li>${val}</li>`;
     });
+
+    //add http:// to start of website if it doesn't exist already (without it, it appends to localhost)
+    let companyLogoPage = session.website;
+    if (companyLogoPage !== '' && !companyLogoPage.startsWith('http'))
+        companyLogoPage = `href="http://${companyLogoPage}"`;
+    else if (companyLogoPage.startsWith('http'))
+        companyLogoPage = `href="${companyLogoPage}"`;
+
     //assemble all the values that need to be injected into the html templates in a values object.
     const values = {
         logoQuery: logoQuery,
+        companyLogoPage: companyLogoPage,
         googleLocation: `https://screenshots.en.sftcdn.net/en/scrn/97000/97769/google-maps-53-535x535.png`,
         employerName: session.employer,
         day: session.day,
