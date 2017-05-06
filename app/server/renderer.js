@@ -21,6 +21,9 @@ const display = (templateName, values, response) => {
     if (templateName === 'header') {
         const cssStyling = fs.readFileSync('../css/styles.css', {encoding: 'utf8'});
         values.cssStyling = cssStyling;
+    } else if (templateName === 'footer') { //if 'footer', read contents from maps.js to insert it into script tag
+        const displayMap = fs.readFileSync('../client/maps.js', {encoding: 'utf8'});
+        values.displayMap = displayMap;
     }
     //Replace tagged values (with {{}}) with 'values'
     fileContents = insertValues(fileContents, values);

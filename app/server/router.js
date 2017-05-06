@@ -1,11 +1,13 @@
 const http = require('http');
 const https = require('https');
 const uwaterlooApi = require('uwaterloo-api');
-const apiKeys = require('./apis.json');
+const apis = require('./apis.json');
 const renderer = require('./renderer.js');
 
 //array to hold query strings for common company's, in order to properly get the logo using Clearbit
 const companies = ['digiflare', 'adroll', 'cibc', 'loblaw', 'groupbyinc', 'bloomberg', 'td', 'rbc', 'waveaccounting'];
+
+/**-------------------------------------------------------------------------------------------------------- */
 
 //helper function to extract data from json and embed them into an object, then render them with renderer
 const extractData = (session, response) => {
@@ -49,10 +51,11 @@ const extractData = (session, response) => {
         buildingNRoom: `${session.building.code} ${session.building.room}`,
         audienceList: audience,
         description: session.description,
-
     };
     renderer.display("info_session", values, response);
 }
+
+/**----------------------------------------------------------------------------------------------------------- */
 
 //function to connect with uw api and retrieve data regarding info sessions
 const home = (request, response) => {
@@ -65,7 +68,7 @@ const home = (request, response) => {
 
         //get JSON from uw api. Instantiate the client first
         const uwClient = new uwaterlooApi({
-            API_KEY: uwApi.key
+            API_KEY: apis.uwKey
         });
 
         //make uw api call to resources/infosessions
@@ -83,13 +86,18 @@ const home = (request, response) => {
 
                     //call extractData session to get relevent data from json and call renderer on it.
                     extractData(session, response);
+
+                    //if three info sessions (each col-sm-4) have been displayed, close preceding row div and add a new row div
                     if (rowCounter % 3 === 0) {
                         response.write('</div><div class="row">');
                     }
-                    ++rowCounter;
+                    ++rowCounter; //use rowCounter to keep track of how many info sessions have been displayed.
                 });
                 response.write('</div>');
-                renderer.display("footer", {}, response);
+                const footerValues = { 
+                    googleMapsKey: apis.googleMapsKey,
+                 };
+                renderer.display("footer", footerValues, response);
                 response.end();
             }
 
