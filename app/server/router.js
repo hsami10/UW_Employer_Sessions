@@ -10,7 +10,7 @@ const companies = ['digiflare', 'adroll', 'cibc', 'loblaw', 'groupbyinc', 'bloom
 /**-------------------------------------------------------------------------------------------------------- */
 
 //helper function to extract data from json and embed them into an object, then render them with renderer
-const extractData = (session, response) => {
+const extractData = (session, response, index) => {
     //construct the query string for the clearbit search for company logo
     let logoQuery = session.employer.replace(' ', '').toLowerCase();
 
@@ -51,6 +51,7 @@ const extractData = (session, response) => {
         buildingNRoom: `${session.building.code} ${session.building.room}`,
         audienceList: audience,
         description: session.description,
+        mapDivId: index
     };
     renderer.display("info_session", values, response);
 }
@@ -85,7 +86,7 @@ const home = (request, response) => {
                     }
 
                     //call extractData session to get relevent data from json and call renderer on it.
-                    extractData(session, response);
+                    extractData(session, response, index);
 
                     //if three info sessions (each col-sm-4) have been displayed, close preceding row div and add a new row div
                     if (rowCounter % 3 === 0) {

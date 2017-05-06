@@ -1,7 +1,13 @@
     </div> <!-- 'row' end -->
     
     <script>
-        {{displayMap}}
+        let map;
+        const initMap = () => {
+            map = new google.maps.Map(document.getElementById('blah'), {
+                center: {lat: -34.397, lng: 150.644},
+                zoom: 8
+            });
+        };
     </script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key={{googleMapsKey}}&callback=initMap">
