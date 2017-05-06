@@ -1,7 +1,7 @@
 const http = require('http');
 const https = require('https');
 const uwaterlooApi = require('uwaterloo-api');
-const uwApi = require('./uw_api.json');
+const apiKeys = require('./apis.json');
 const renderer = require('./renderer.js');
 
 //array to hold query strings for common company's, in order to properly get the logo using Clearbit
@@ -48,7 +48,8 @@ const extractData = (session, response) => {
         buildingUrl: session.building.map_url,
         buildingNRoom: `${session.building.code} ${session.building.room}`,
         audienceList: audience,
-        description: session.description
+        description: session.description,
+
     };
     renderer.display("info_session", values, response);
 }
