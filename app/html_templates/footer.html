@@ -2,13 +2,14 @@
 <!-- 'row' end -->
 
 <script>
-    // let logoImgs = document.getElementsByClassName('logos');
-    // logoImgs.forEach((value, index) => {
-    //     value.onerror = () => {
-    //         console.log('Image didnt load');
-    //         //this.src = '../img_unavailable.jpg';
-    //     }
-    // });
+    let logoImgs = document.getElementsByClassName('logos');
+    logoImgs.forEach((value, index) => {
+        console.log(value);
+        value.onerror = () => {
+            this.setAttribute('src', null);
+            this.setAttribute('src', 'https://drive.google.com/file/d/0B5ICWVIwdLFZZGxMRzRwVkJBVVE/view');
+        }
+    });
 
     function initMap() {
         const sessionLocs = [{{sessionLocArr}}];
