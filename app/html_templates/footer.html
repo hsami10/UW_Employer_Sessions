@@ -12,7 +12,10 @@
             if (divMap === null) {
                 continue;
             }
-            const location = { sessionLocs[y] };
+            const location = { 
+                lat: sessionLocs[y],
+                lng: sessionLocs[y + 1]
+             };
             const map = new google.maps.Map(divMap, {
                 center: location,
                 zoom: 16
@@ -22,9 +25,9 @@
                 map: map
                 //title: 
             });
-            ++y;
-        });
-    };
+             y += 2;
+        }
+    }
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{googleMapsKey}}&callback=initMap">
 

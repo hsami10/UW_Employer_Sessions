@@ -57,7 +57,7 @@ const extractData = (session, response, index) => {
     renderer.display("info_session", values, response);
 
     //add to global array sessionLocations to be used in the footer later
-    sessionLocations.push(`'lat: ${session.building.latitude}, lng: ${session.building.longitude}'`);
+    sessionLocations.push([session.building.latitude, session.building.longitude]);
 }
 
 /**----------------------------------------------------------------------------------------------------------- */
