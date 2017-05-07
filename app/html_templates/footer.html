@@ -2,13 +2,13 @@
 <!-- 'row' end -->
 
 <script>
-    let logoImgs = document.getElementsByClassName('logos');
-    logoImgs.forEach((value, index) => {
-        value.onerror = () => {
-            console.log('image didnt load');
-            //this.src = '../img_unavailable.jpg';
-        }
-    });
+    // let logoImgs = document.getElementsByClassName('logos');
+    // logoImgs.forEach((value, index) => {
+    //     value.onerror = () => {
+    //         console.log('Image didnt load');
+    //         //this.src = '../img_unavailable.jpg';
+    //     }
+    // });
 
     function initMap() {
         const sessionLocs = [{{sessionLocArr}}];
