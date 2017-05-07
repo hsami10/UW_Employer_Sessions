@@ -6,6 +6,7 @@ const renderer = require('./renderer.js');
 
 //array to hold query strings for common company's, in order to properly get the logo using Clearbit
 const companies = ['digiflare', 'adroll', 'cibc', 'loblaw', 'groupbyinc', 'bloomberg', 'td', 'rbc', 'waveaccounting'];
+let sessionLocations = [];
 
 /**-------------------------------------------------------------------------------------------------------- */
 
@@ -54,6 +55,9 @@ const extractData = (session, response, index) => {
         mapDivId: index
     };
     renderer.display("info_session", values, response);
+
+    //add to global array sessionLocations to be used in the footer later
+    sessionLocations.push(`'lat: ${session.building.latitude}, lng: ${session.building.longitude}'`);
 }
 
 /**----------------------------------------------------------------------------------------------------------- */
@@ -95,9 +99,11 @@ const home = (request, response) => {
                     ++rowCounter; //use rowCounter to keep track of how many info sessions have been displayed.
                 });
                 response.write('</div>');
-                
+
                 const footerValues = { 
                     googleMapsKey: apis.googleMapsKey,
+                    sessionLocArr: sessionLocations,
+                    dataArrLength: data.length
                  };
                 renderer.display("footer", footerValues, response);
 
