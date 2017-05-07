@@ -4,12 +4,19 @@
 <script>
     let logoImgs = document.getElementsByClassName('logos');
     logoImgs.forEach((value, index) => {
-        console.log(value);
+        //console.log(value);
         value.onerror = () => {
-            this.setAttribute('src', null);
-            this.setAttribute('src', 'https://drive.google.com/file/d/0B5ICWVIwdLFZZGxMRzRwVkJBVVE/view');
+            value.setAttribute('src', null);
+            value.setAttribute('src', 'https://drive.google.com/file/d/0B5ICWVIwdLFZZGxMRzRwVkJBVVE/view');
         }
     });
+
+    function handleImgError(img) {
+        //the first one is the url to the unavailable img icon address on my google drive (which I copied over from google images - img2).
+        const imgUnavailable = 'https://lh5.googleusercontent.com/hOBR8C-eCTiaJ8UE9La7JbfRrePxfx6z6PeWcRSnXEg2ZbtJXXxJnqAAz6rnxjlU3jK7Xyt4go6FEx0=w1920-h918';
+        //const imgUnavailable2 =  'https://pbs.twimg.com/profile_images/600060188872155136/st4Sp6Aw.jpg'
+        img.src = imgUnavailable;
+    }
 
     function initMap() {
         const sessionLocs = [{{sessionLocArr}}];
