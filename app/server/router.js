@@ -6,7 +6,7 @@ const renderer = require('./renderer.js');
 
 //array to hold query strings for common company's, in order to properly get the logo using Clearbit
 const companies = ['digiflare', 'adroll', 'cibc', 'loblaw', 'groupbyinc', 'bloomberg', 'td', 'rbc', 'waveaccounting'];
-let sessionLocations = [];
+let sessionLocations = []; //2D array to store latitude and longitude of each session location. Passed to footer rendering.
 
 /**-------------------------------------------------------------------------------------------------------- */
 

@@ -2,6 +2,14 @@
 <!-- 'row' end -->
 
 <script>
+    let logoImgs = document.getElementsByClassName('logos');
+    logoImgs.forEach((value, index) => {
+        value.onerror = () => {
+            console.log('image didnt load');
+            //this.src = '../img_unavailable.jpg';
+        }
+    });
+
     function initMap() {
         const sessionLocs = [{{sessionLocArr}}];
         //e.g., sessionLocs = ['lat: 43.4727, lng: -80.5421', 'lat: 43.4727, lng: -80.5421'];
