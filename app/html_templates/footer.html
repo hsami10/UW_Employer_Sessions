@@ -8,6 +8,14 @@
 </script>
 
 <script>
+    $('h1').click(function() {
+        $(this).animate({
+            left: '100px'
+        }, "slow");
+    })
+</script>
+
+<script>
     // let logoImgs = document.getElementsByClassName('logos');
     // logoImgs.forEach((value, index) => {
     //     //console.log(value);
@@ -30,7 +38,7 @@
         const sessionLocs = [{{sessionLocArr}}];
         //e.g., sessionLocs = ['lat: 43.4727, lng: -80.5421', 'lat: 43.4727, lng: -80.5421'];
 
-        //loop dataArrLength many times (including the Closed Info Sessions). 
+        //loop dataArrLength times (including the Closed Info Sessions). 
         for (let x = 0, y = 0 ; x < {{dataArrLength}} ; ++x) {
             divMap = document.getElementById(`map${x}`);
             if (divMap === null) {
@@ -53,9 +61,7 @@
         }
     }
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key={{googleMapsKey}}&callback=initMap">
-
-</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{googleMapsKey}}&callback=initMap"></script>
 </body>
 
 </html>
