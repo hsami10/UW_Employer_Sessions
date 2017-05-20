@@ -8,6 +8,10 @@
 </script>
 
 <script>
+    $(window).on("load", () => {
+        $("#hideAll").css({"display": "none"});
+    });
+
     $('h1').ready(function() {
         $(this).animate({
             top: '300px'

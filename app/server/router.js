@@ -5,7 +5,7 @@ const apis = require('./apis.json');
 const renderer = require('./renderer.js');
 
 //array to hold query strings for common company's, in order to properly get the logo using Clearbit
-const companies = ['digiflare', 'adroll', 'cibc', 'loblaw', 'groupbyinc', 'bloomberg', 'td', 'rbc', 'waveaccounting'];
+const companies = ['digiflare', 'adroll', 'wattpad', 'cibc', 'loblaw', 'groupbyinc', 'bloomberg', 'td', 'rbc', 'waveaccounting'];
 let sessionLocations = []; //2D array to store latitude and longitude of each session location. Passed to footer rendering.
 
 /**-------------------------------------------------------------------------------------------------------- */
@@ -110,7 +110,7 @@ const home = (request, response) => {
                     renderer.display("footer", footerValues, response);
 
                     response.end();
-                }, 3500);
+                }, 50);
             }
         });
     }
