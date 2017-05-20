@@ -3,3 +3,10 @@ node_modules
 
 # api keys
 apis.json
+
+# sass stuff
+styles.css.map
+.sass-cache
+
+# fonts
+fonts

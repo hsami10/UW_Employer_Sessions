@@ -1,0 +1,40 @@
+// @font-face {
+//     font-family: 'bebasregular';
+//     src: url('/fonts/bebas-webfont.woff2') format('woff2'),
+//          url('/fonts/bebas-webfont.woff') format('woff'),
+//          url('/fonts/BEBAS.ttf') format('truetype');
+// }
+
+body {
+    padding: 0 30px 30px; 
+}
+
+#hideAll {
+    position: fixed;
+    left: 0px; 
+    right: 0px; 
+    top: 0px; 
+    bottom: 0px; 
+    background-color: white;
+    z-index: 99; /* Higher than anything else in the document */
+
+    h1 {
+        position: relative;
+        top: 40%;
+        vertical-align: middle;
+        text-align: center;
+        font-size: 50px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-variant: small-caps;
+        font-weight: bold;
+        color: #996666;
+    }
+}
+
+.sessionBody {
+    padding: 25px;
+}
+
+[id^="map"] {
+    height: 215px;
+}
