@@ -20,7 +20,7 @@ const extractData = (session, response, index) => {
         if (logoQuery.includes(company))
             logoQuery = company;
     });
-    
+
     if (logoQuery.includes('electronicarts')) //individual EA (Electronic Arts) case
         logoQuery = 'ea';
     logoQuery = `http://logo.clearbit.com/${logoQuery}.com?size=400`; //construct url to call for company logo
@@ -80,42 +80,39 @@ const home = (request, response) => {
         uwClient.get('/resources/infosessions', (err, res) => {
             if (res.meta.status === 200) {
                 const data = res.data;
-                
+
                 let rowCounter = 1;
-                data.forEach((session, index) => {
-                    //if its a closed information session, skip over this one
-                    const checkClosed = session.employer.toLowerCase();
-                    if (checkClosed.includes("closed info session") || checkClosed.includes("closed information session")) {
-                        return;
-                    }
 
-                    //call extractData session to get relevent data from json and call renderer on it.
-                    extractData(session, response, index);
+                setTimeout(() => {
+                    data.forEach((session, index) => {
+                        //if its a closed information session, skip over this one
+                        const checkClosed = session.employer.toLowerCase();
+                        if (checkClosed.includes("closed info session") || checkClosed.includes("closed information session")) {
+                            return;
+                        }
 
-                    //if three info sessions (each col-sm-4) have been displayed, close preceding row div and add a new row div
-                    if (rowCounter % 3 === 0) {
-                        response.write('</div><div class="row">');
-                    }
-                    ++rowCounter; //use rowCounter to keep track of how many info sessions have been displayed.
-                });
-                response.write('</div>');
+                        //call extractData session to get relevent data from json and call renderer on it.
+                        extractData(session, response, index);
 
-                const footerValues = { 
-                    googleMapsKey: apis.googleMapsKey,
-                    sessionLocArr: sessionLocations,
-                    dataArrLength: data.length
-                 };
-                renderer.display("footer", footerValues, response);
+                        //if three info sessions (each col-sm-4) have been displayed, close preceding row div and add a new row div
+                        if (rowCounter % 3 === 0) {
+                            response.write('</div><div class="row">');
+                        }
+                        ++rowCounter; //use rowCounter to keep track of how many info sessions have been displayed.
+                    });
+                    response.write('</div>');
 
-                response.end();
+                    const footerValues = {
+                        googleMapsKey: apis.googleMapsKey,
+                        sessionLocArr: sessionLocations,
+                        dataArrLength: data.length
+                    };
+                    renderer.display("footer", footerValues, response);
+
+                    response.end();
+                }, 3500);
             }
-
         });
-
-        //on end, 
-        //show all the cards containing employer info sessions
-        //on error,
-        //show error
     }
 }
 
