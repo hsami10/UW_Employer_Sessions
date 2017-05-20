@@ -1,18 +1,33 @@
 </div>
 <!-- 'row' end -->
 
-<script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous">
-</script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="http://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
 
 <script>
-    // const windowHeight = $(window).css("height");
-    // $("hideAll").css({"line-height": windowHeight});
 
     $(window).on("load", () => {
-        $("#hideAll").css({"display": "none"});
+        $("#hideAll").animate({
+            top: "0px",
+            bottom: "0px",
+            right: "0px",
+            left: "0px",
+            zIndex: "0px",
+            backgroundColor: "transparent"
+        }, {
+            duration: 1000,
+            queue: false,
+            easing: 'linear'
+        });
+
+        $("h1").animate({
+            top: "0px",
+            opacity: "1"
+        }, {
+            duration: 1000,
+            queue: false,
+            easing: 'linear'
+        });
     });
 </script>
 
