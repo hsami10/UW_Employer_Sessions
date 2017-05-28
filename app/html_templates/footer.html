@@ -24,7 +24,7 @@
             marginTop: "0px",
             marginBottom: "0px",
             height: "80%",
-            backgroundColor: "rgba(255, 255, 255, 1)"
+            backgroundColor: "rgba(255, 255, 255)"
         }, {
             duration: 1000,
             queue: false,
@@ -34,7 +34,7 @@
 
     $(document).scroll(() => {
         const $header = $("h1");
-        $header.toggleClass("scrolled", $(this).scrollTop() > $header);
+        $header.toggleClass("scrolled", $(this).scrollTop() > $header.height());
     });
 </script>
 
