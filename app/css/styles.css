@@ -23,6 +23,10 @@ body {
     color: #996666;
     box-shadow: none;
     transition: box-shadow 200ms linear; }
+  #hideAll .loadGif {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; }
   #hideAll h1.scrolled {
     box-shadow: 0 5px 8px -2px #996666;
     transition: box-shadow 200ms linear; }
