@@ -26,15 +26,16 @@ body {
         text-align: center;
         font-size: 50px;
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        //font-family: "bebasregular";
         font-variant: small-caps;
         font-weight: bold;
         color: #996666;
-        box-shadow: 0 0 0 0;
+        box-shadow: none;
         transition: box-shadow 200ms linear;
     }
 
     h1.scrolled {
-        box-shadow: 0 4px 2px -2px gray;
+        box-shadow: 0 5px 8px -2px #996666;
         transition: box-shadow 200ms linear;
     }
 }

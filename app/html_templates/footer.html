@@ -5,6 +5,16 @@
 <script src="http://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
 
 <script>
+    let i = 0;
+    function pulsate() {
+        if (i >= 6) return;
+        $("h1").
+            animate({ opacity: 0.2 }, 1000, 'linear').
+            animate({ opacity: 1 }, 1000, 'linear', pulsate);
+        ++i;
+    }
+    pulsate();
+    
     $(window).on("load", () => {
         $("#hideAll").animate({
             top: "0px",
