@@ -1,10 +1,3 @@
-// @font-face {
-//     font-family: 'bebasregular';
-//     src: url('/fonts/bebas-webfont.woff2') format('woff2'),
-//          url('/fonts/bebas-webfont.woff') format('woff'),
-//          url('/fonts/BEBAS.ttf') format('truetype');
-// }
-
 body {
     padding: 0 30px 30px; 
 }
@@ -25,8 +18,8 @@ body {
         vertical-align: middle;
         text-align: center;
         font-size: 50px;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        //font-family: "bebasregular";
+        // font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-family: "Oswald";
         font-variant: small-caps;
         font-weight: bold;
         color: #996666;
