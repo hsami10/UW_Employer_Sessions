@@ -32,7 +32,14 @@ body {
     transition: box-shadow 200ms linear; }
 
 .sessionBody {
-  padding: 25px; }
+  padding: 25px;
+  font-family: 'Oswald'; }
+  .sessionBody h2 {
+    font-weight: bold;
+    font-size: 38px;
+    text-align: center; }
+  .sessionBody h3, .sessionBody a, .sessionBody p {
+    text-align: center; }
 
 #allSessions {
   margin-top: 5%; }

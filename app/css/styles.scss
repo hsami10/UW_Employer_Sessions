@@ -40,6 +40,17 @@ body {
 
 .sessionBody {
     padding: 25px;
+    font-family: 'Oswald';
+
+    h2 {
+        font-weight: bold;
+        font-size: 38px;
+        text-align: center;
+    }
+
+    h3, a, p {
+        text-align: center;
+    }
 }
 
 #allSessions {
